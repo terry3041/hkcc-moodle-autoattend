@@ -1,5 +1,5 @@
 # hkcc-moodle-autoattend
-
+利用 Python 和 Selenium 自動登入[香港專上學院 Moodle](https://moodle.cpce-polyu.edu.hk/)並自動出席當天課程。
 
 ## 例子
 <img src="https://i.imgur.com/HJCLp97.png" width="250">
@@ -7,7 +7,7 @@
 # 開始使用
 ## 環境需求
 - [Python 3.8.0+](https://www.python.org/)
-- [Microsoft Edge WebDriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) / [Google Chrome WebDriver](https://chromedriver.storage.googleapis.com/index.html)
+- 與瀏覽器版本吻合的 [Microsoft Edge WebDriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) / [Google Chrome WebDriver](https://chromedriver.storage.googleapis.com/index.html)
 
 ## 安裝方式
 若要執行 hkcc-moodle-autoattend，需要安裝額外的套件，使用終端機至此專案的資料夾中下此指令：
