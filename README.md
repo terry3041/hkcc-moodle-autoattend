@@ -20,7 +20,7 @@ pip install -r requirements.txt
 pip3 install -r requirements.txt
 ```
 
-2. 將下載的 'chromedriver.exe' 或 'msedgedriver.exe' 放至與腳本同一目錄
+2. 將下載的 `chromedriver.exe` 或 `msedgedriver.exe` 放至與腳本同一目錄
 
 ## 設定
 用任意的文字編輯器開啟 "autoattend.py"，在
