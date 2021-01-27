@@ -10,7 +10,7 @@
 - [Microsoft Edge WebDriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) / [Google Chrome WebDriver](https://chromedriver.storage.googleapis.com/index.html)
 
 ## 安裝方式
-若要執行 hkcc-moodle--autoattend，需要安裝額外的套件，使用終端機至此專案的資料夾中下此指令：
+若要執行 hkcc-moodle-autoattend，需要安裝額外的套件，使用終端機至此專案的資料夾中下此指令：
 
 ```
 pip install -r requirements.txt
