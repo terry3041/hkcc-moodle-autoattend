@@ -27,7 +27,7 @@ account = ""
 password = ""
 browser = "chrome" # edge or chrome
 ```
-插入帳號密碼及所喜好的瀏覽器（目前僅支援 Chrome / Edge），如下：
+輸入帳號密碼及所喜好的瀏覽器（目前僅支援 Chrome / Edge），如下：
 ```py
 account = "2020XXXXA"
 password = "Abc123456!"
