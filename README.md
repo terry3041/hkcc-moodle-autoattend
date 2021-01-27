@@ -25,11 +25,13 @@ pip3 install -r requirements.txt
 ```py
 account = ""
 password = ""
+browser = "chrome" # edge or chrome
 ```
-插入帳號密碼，如下：
+插入帳號密碼及所喜好的瀏覽器（目前僅支援 Chrome / Edge），如下：
 ```py
 account = "2020XXXXA"
 password = "Abc123456!"
+browser = "edge" # edge or chrome
 ```
 
 ## 使用方式
