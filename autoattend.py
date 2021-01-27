@@ -1,5 +1,6 @@
 import re
 import os
+import sys
 from datetime import datetime
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -8,6 +9,9 @@ base_url = "https://moodle.cpce-polyu.edu.hk/"
 account = ""
 password = ""
 browser = "chrome" # edge or chrome
+
+if account == "" or password == "":
+    sys.exit("Credentials are not inputted.")
 
 dirname = os.path.dirname(__file__)
 if browser == "chrome":
@@ -29,6 +33,8 @@ elif browser == "edge":
     options.add_argument("--headless")
     options.add_argument("--log-level=3")
     driver = Edge(webdriver_path, options = options)
+else:
+    print("Invaild browser.")
 
 def login():
     driver.get(base_url)
