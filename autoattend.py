@@ -3,7 +3,6 @@ import os
 import sys
 from datetime import datetime
 from selenium import webdriver
-from bs4 import BeautifulSoup
 
 base_url = "https://moodle.cpce-polyu.edu.hk/"
 account = ""
@@ -47,16 +46,19 @@ def get_attendance():
     today = datetime.today()
     timestamp = str(int(datetime(int(today.strftime("%Y")), int(today.strftime("%m")), int(today.strftime("%d"))).timestamp()))
     driver.get(base_url + "calendar/view.php?view=day&time=" + timestamp)
-    soup = BeautifulSoup(driver.page_source, 'html.parser')
-    get_attendance.link = soup.find_all('a', href = re.compile(base_url + "mod/attendance/"))
-    for a in get_attendance.link:
-        print("Attendance link found: " + a['href'])
+    get_calendar_link = driver.find_elements_by_link_text("Go to activity")
+    get_attendance.link = []
+    attendance_pattern = re.compile(base_url + "mod/attendance/")
+    for a in get_calendar_link:
+        if attendance_pattern.match(a.get_attribute('href')) != None:
+            print("Attendance link found: " + a.get_attribute('href'))
+            get_attendance.link.append(a.get_attribute('href'))
     print("Total link found: " + str(len(get_attendance.link)) + "\n")
     take_attendance()
 
 def take_attendance():
     for a in get_attendance.link:
-        driver.get(a['href'])
+        driver.get(a)
         current_title = driver.find_element_by_class_name("page-header-headings").text
         if len(driver.find_elements_by_link_text("Submit attendance")):
             driver.find_element_by_link_text("Submit attendance").click()
