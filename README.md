@@ -7,6 +7,7 @@
 # 開始使用
 ## 環境需求
 - [Python 3.8.0+](https://www.python.org/)
+- [Microsoft Edge](https://www.microsoft.com/zh-tw/edge) / [Google Chrome](https://www.google.com/chrome/)
 - 與瀏覽器版本吻合的 [Microsoft Edge WebDriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) / [Google Chrome WebDriver](https://chromedriver.storage.googleapis.com/index.html)
 
 ## 安裝方式
