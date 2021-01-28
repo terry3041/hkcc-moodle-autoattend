@@ -6,6 +6,7 @@
 
 # 開始使用
 ## 環境需求
+- [Java 8+](https://www.java.com/zh-TW/download/)
 - [Python 3.8.0+](https://www.python.org/)
 - [Selenium 伺服器](https://www.selenium.dev/downloads/)
 - [HtmlUnitDriver](https://github.com/SeleniumHQ/htmlunit-driver/releases)
