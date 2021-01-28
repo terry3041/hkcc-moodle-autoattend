@@ -53,6 +53,7 @@ def login():
         for i in error:
             sys.exit(re.sub("\n(.*)", "", i.text))
             driver.quit()
+    print("\nLogged in as " + account)
     get_attendance()
 
 def get_attendance():
@@ -67,8 +68,7 @@ def get_attendance():
         if attendance_pattern.match(activity_link[i].get_attribute('href')) != None:
             get_attendance.link.append(activity_link[i].get_attribute('href'))
             get_attendance.time.append(activity_time[i].text)
-            print("Attendance link found: " + get_attendance.link[i])
-    print("Total links found: " + str(len(get_attendance.link)) + "\n")
+    print("Lessons with attendance link available: " + str(len(get_attendance.link)))
     take_attendance()
 
 def check_time(i):
@@ -96,19 +96,25 @@ def check_time(i):
         return False
 
 def take_attendance():
+    not_visited = []
     for i in range(len(get_attendance.link)):
         if check_time(i) == True:
             driver.get(get_attendance.link[i])
             current_title = driver.find_element_by_class_name("page-header-headings").text
+            print("\nTaking attendance of " + current_title)
             if len(driver.find_elements_by_link_text("Submit attendance")):
                 driver.find_element_by_link_text("Submit attendance").click()
                 driver.find_element_by_name("status").click()
                 driver.find_element_by_name("submitbutton").click()
-                print("Taking attendance of " + current_title + " at " + datetime.now().strftime("%H:%M:%S"))
+                print("Done at " + datetime.now().strftime("%H:%M:%S"))
             else:
-                print("Not taking attendance of " + current_title + ". Maybe you have already taken the attendance or there are some errors.")
+                print("Failed. Maybe you have already taken the attendance or there are some errors.")
         else:
-            print("Not visiting " + get_attendance.link[i] + " as it is not in designated period of time")
+            not_visited.append(get_attendance.link[i])
+    if len(not_visited):
+        print("\nNot visited as it is not in designated period of time now:")
+    for link in not_visited:
+        print(link)
     driver.quit()
     sys.exit()
 
