@@ -2,7 +2,7 @@
 利用 Python 和 Selenium 自動登入 [香港專上學院 Moodle](https://moodle.cpce-polyu.edu.hk/) 並自動出席當天課程。
 
 ## 例子
-<img src="https://i.imgur.com/BwnUWcN.png" width="250">
+<img src="https://i.imgur.com/BwnUWcN.png" width="250"><img src="https://i.imgur.com/05RSTb3.png" width="250">
 
 # 開始使用
 ## 環境需求
