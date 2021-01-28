@@ -4,44 +4,21 @@ import sys
 import time
 from datetime import datetime
 from selenium import webdriver
+from discord_webhook import DiscordWebhook, DiscordEmbed
 
 base_url = "https://moodle.cpce-polyu.edu.hk/"
 account = ""
 password = ""
-browser = "chrome" # edge or chrome
+webdriver_port = "4444"
+discord_webhook_url = ""
 
 if account == "" or password == "":
     sys.exit("Credentials not inputted")
 
-dirname = os.path.dirname(__file__)
-if browser == "chrome":
-    from selenium.webdriver.chrome.options import Options
-    webdriver_path = os.path.join(dirname, 'chromedriver.exe')
-    if os.path.isfile(webdriver_path) != True:
-        sys.exit("chromedriver.exe not found")
-    options = webdriver.ChromeOptions()
-    options.page_load_strategy = 'eager'
-    options.add_argument("-incognito")
-    options.add_argument("--headless")
-    options.add_argument("--log-level=3")
-    driver = webdriver.Chrome(webdriver_path, options = options)
-elif browser == "edge":
-    from msedge.selenium_tools import Edge, EdgeOptions
-    webdriver_path = os.path.join(dirname, 'msedgedriver.exe')
-    if os.path.isfile(webdriver_path) != True:
-        sys.exit("msedgedriver.exe not found")
-    options = EdgeOptions()
-    options.use_chromium = True
-    options.page_load_strategy = 'eager'
-    options.add_argument("-inprivate")
-    options.add_argument("--headless")
-    options.add_argument("--log-level=3")
-    driver = Edge(webdriver_path, options = options)
-else:
-    sys.exit("Invaild browser")
-
 today = datetime.today()
 year, month, day = int(today.strftime("%Y")), int(today.strftime("%m")), int(today.strftime("%d"))
+webhook = DiscordWebhook(url=discord_webhook_url)
+driver = webdriver.Remote("http://localhost:" + webdriver_port +"/wd/hub", desired_capabilities=webdriver.DesiredCapabilities.HTMLUNITWITHJS)
 
 def login():
     driver.get(base_url)
@@ -50,9 +27,15 @@ def login():
     driver.find_element_by_name("ctl00$ContentPlaceHolder1$SubmitButton").click()
     error = driver.find_elements_by_id('ctl00_ContentPlaceHolder1_ErrorTextLabel')
     if len(error):
-        print("Login failed (" + re.sub("\n(.*)", "", error[0].text) + ")")
+        reason = re.sub("\n(.*)", "", error[0].text)
+        print("Login failed (" + reason + ")")
+        message = "❌ | Fail to login as " + account + " (" + reason + ")"
+        embed = DiscordEmbed(description=message, color=7506394)
+        webhook.add_embed(embed)
+        webhook.execute()
         driver.quit()
         sys.exit()
+    driver.execute_script("window.setTimeout('document.forms[0].submit()', 0);")
     print("\nLogged in as " + account)
     get_attendance()
 
@@ -107,8 +90,13 @@ def take_attendance():
                 driver.find_element_by_name("status").click()
                 driver.find_element_by_name("submitbutton").click()
                 print("Done at " + datetime.now().strftime("%H:%M:%S"))
+                message = "✅ | Attendance of " + current_title + " taken at " + datetime.now().strftime("%H:%M:%S")
             else:
                 print("Failed. Maybe you have already taken the attendance or there are some errors.")
+                message = "❌ | Fail to take the attendance of " + current_title
+            embed = DiscordEmbed(description=message, color=7506394)
+            webhook.add_embed(embed)
+            webhook.execute()
         else:
             not_visited.append(get_attendance.link[i])
     if len(not_visited):
