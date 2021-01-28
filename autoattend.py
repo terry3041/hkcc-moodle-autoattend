@@ -29,7 +29,7 @@ def login():
     if len(error):
         reason = re.sub("\n(.*)", "", error[0].text)
         print("Login failed (" + reason + ")")
-        message = "❌ | Fail to login as " + account + " (" + reason + ")"
+        message = "❌ | 無法登入為 " + account + " (" + reason + ")"
         embed = DiscordEmbed(description=message, color=7506394)
         webhook.add_embed(embed)
         webhook.execute()
@@ -90,10 +90,10 @@ def take_attendance():
                 driver.find_element_by_name("status").click()
                 driver.find_element_by_name("submitbutton").click()
                 print("Done at " + datetime.now().strftime("%H:%M:%S"))
-                message = "✅ | Attendance of " + current_title + " taken at " + datetime.now().strftime("%H:%M:%S")
+                message = "✅ | 已為 " + current_title + " 點名"
             else:
                 print("Failed. Maybe you have already taken the attendance or there are some errors.")
-                message = "❌ | Fail to take the attendance of " + current_title
+                message = "❌ | 未能為 " + current_title + " 點名"
             embed = DiscordEmbed(description=message, color=7506394)
             webhook.add_embed(embed)
             webhook.execute()
