@@ -50,9 +50,9 @@ def login():
     driver.find_element_by_name("ctl00$ContentPlaceHolder1$SubmitButton").click()
     error = driver.find_elements_by_id('ctl00_ContentPlaceHolder1_ErrorTextLabel')
     if len(error):
-        for i in error:
-            sys.exit(re.sub("\n(.*)", "", i.text))
-            driver.quit()
+        print("Login failed (" + re.sub("\n(.*)", "", error[0].text) + ")")
+        driver.quit()
+        sys.exit()
     print("\nLogged in as " + account)
     get_attendance()
 
