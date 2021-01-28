@@ -1,5 +1,5 @@
 # hkcc-moodle-autoattend
-利用 Python 和 Selenium 自動登入 [香港專上學院 Moodle](https://moodle.cpce-polyu.edu.hk/) 並自動出席當天課程。
+利用 Python 和 Selenium 自動登入 [香港專上學院 Moodle](https://moodle.cpce-polyu.edu.hk/) 並自動出席當天課程。<br>
 [Discord webhook 版](https://github.com/terry3041/hkcc-moodle-autoattend/tree/discord-webhook)
 
 ## 例子
