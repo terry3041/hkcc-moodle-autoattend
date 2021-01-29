@@ -18,9 +18,10 @@ if account == "" or password == "":
 today = datetime.today()
 year, month, day = int(today.strftime("%Y")), int(today.strftime("%m")), int(today.strftime("%d"))
 webhook = DiscordWebhook(url=discord_webhook_url)
+
 capabilities = webdriver.DesiredCapabilities.HTMLUNITWITHJS
 capabilities.update({'page_load_strategy' : 'eager'})
-driver = webdriver.Remote("http://localhost:" + webdriver_port +"/wd/hub", desired_capabilities = capabilities)
+driver = webdriver.Remote("http://localhost:" + webdriver_port + "/wd/hub", desired_capabilities = capabilities)
 
 def login():
     driver.get(base_url)
