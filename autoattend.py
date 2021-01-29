@@ -18,7 +18,9 @@ if account == "" or password == "":
 today = datetime.today()
 year, month, day = int(today.strftime("%Y")), int(today.strftime("%m")), int(today.strftime("%d"))
 webhook = DiscordWebhook(url=discord_webhook_url)
-driver = webdriver.Remote("http://localhost:" + webdriver_port +"/wd/hub", desired_capabilities=webdriver.DesiredCapabilities.HTMLUNITWITHJS)
+capabilities = webdriver.DesiredCapabilities.HTMLUNITWITHJS
+capabilities.update({'page_load_strategy' : 'eager'})
+driver = webdriver.Remote("http://localhost:" + webdriver_port +"/wd/hub", desired_capabilities = capabilities)
 
 def login():
     driver.get(base_url)
@@ -30,7 +32,7 @@ def login():
         reason = re.sub("\n(.*)", "", error[0].text)
         print("Login failed (" + reason + ")")
         message = "❌ | 無法登入為 " + account + " (" + reason + ")"
-        embed = DiscordEmbed(description=message, color=7506394)
+        embed = DiscordEmbed(description=message, color=14495300)
         webhook.add_embed(embed)
         webhook.execute()
         driver.quit()
@@ -91,10 +93,11 @@ def take_attendance():
                 driver.find_element_by_name("submitbutton").click()
                 print("Done at " + datetime.now().strftime("%H:%M:%S"))
                 message = "✅ | 已為 " + current_title + " 點名"
+                embed = DiscordEmbed(description=message, color=7844437)
             else:
                 print("Failed. Maybe you have already taken the attendance or there are some errors.")
                 message = "❌ | 未能為 " + current_title + " 點名"
-            embed = DiscordEmbed(description=message, color=7506394)
+                embed = DiscordEmbed(description=message, color=14495300)
             webhook.add_embed(embed)
             webhook.execute()
         else:
