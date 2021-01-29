@@ -2,7 +2,7 @@
 利用 Python 和 Selenium 自動登入 [香港專上學院 Moodle](https://moodle.cpce-polyu.edu.hk/) 並自動出席當天課程，並將訊息透過 webhook 發佈到 Discord 上。
 
 ## 例子
-<img src="https://i.imgur.com/tM9mVbW.png" width="250">
+<img src="https://i.imgur.com/IfQns5P.png" width="250">
 
 # 開始使用
 ## 環境需求
