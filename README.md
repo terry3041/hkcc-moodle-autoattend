@@ -44,10 +44,10 @@ discord_webhook_url = ""
 ```
 輸入帳號密碼，Selenium 伺服器端口及 Discord 的 webhook 連結，如下：
 ```py
-account = "2020XXXXA"
-password = "Abc123456!"
+account = "XXXXXXXXA"
+password = "abc123456"
 webdriver_port = "4444"
-discord_webhook_url = "https://discord.com/api/webhooks/......."
+discord_webhook_url = "https://discord.com/api/webhooks/.../..."
 ```
 
 ## 使用方式
