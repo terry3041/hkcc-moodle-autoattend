@@ -7,6 +7,8 @@
 # 開始使用
 ## 環境需求
 - [Raspberry Pi OS](https://www.raspberrypi.org/software/) / [Ubuntu for ARM](https://ubuntu.com/download/raspberry-pi)
+- Chromium + WebDriver
+- [Python 3.8.0+](https://www.python.org/)
 
 ## 安裝方式
 1. 若要執行 hkcc-moodle-autoattend，需要安裝額外的套件，使用終端機至此專案的資料夾中執行此指令：
