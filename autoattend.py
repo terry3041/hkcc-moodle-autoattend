@@ -55,7 +55,15 @@ def get_attendance():
             get_attendance.link.append(activity_link[i].get_attribute('href'))
             get_attendance.time.append(activity_time[i].text)
     print("Lessons with attendance link available: " + str(len(get_attendance.link)))
-    take_attendance()
+    if len(get_attendance.link):
+        take_attendance()
+    else:
+        message = "❌ | 今天沒有需要出席的課堂"
+        embed = DiscordEmbed(description=message, color=14495300)
+        webhook.add_embed(embed)
+        webhook.execute()
+        driver.quit()
+        sys.exit()
 
 def check_time(i):
     attendance_time = get_attendance.time[i].replace(":", " ").split()
