@@ -7,8 +7,7 @@
 # 開始使用
 ## 環境需求
 - [Python 3.8.0+](https://www.python.org/)
-- [Google Chrome](https://www.google.com/chrome/)
-- [Google Chrome WebDriver](https://chromedriver.storage.googleapis.com/index.html)
+- [Google Chrome](https://www.google.com/chrome/) + [WebDriver](https://chromedriver.storage.googleapis.com/index.html)
 
 ## 安裝方式
 1. 若要執行 hkcc-moodle-autoattend，需要安裝額外的套件，使用終端機至此專案的資料夾中執行此指令：
