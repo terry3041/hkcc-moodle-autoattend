@@ -9,7 +9,6 @@ from discord_webhook import DiscordWebhook, DiscordEmbed
 base_url = "https://moodle.cpce-polyu.edu.hk/"
 account = ""
 password = ""
-webdriver_port = "4444"
 discord_webhook_url = ""
 
 if account == "" or password == "":
@@ -19,9 +18,13 @@ today = datetime.today()
 year, month, day = int(today.strftime("%Y")), int(today.strftime("%m")), int(today.strftime("%d"))
 webhook = DiscordWebhook(url=discord_webhook_url)
 
-capabilities = webdriver.DesiredCapabilities.HTMLUNITWITHJS
-capabilities.update({'page_load_strategy' : 'eager'})
-driver = webdriver.Remote("http://localhost:" + webdriver_port + "/wd/hub", desired_capabilities = capabilities)
+options = webdriver.ChromeOptions()
+options.add_argument("disable-features=VizDisplayCompositor") # needed for raspberry pi?
+options.add_argument("headless")
+options.add_argument("-incognito")
+options.add_argument("--log-level=3")
+options.page_load_strategy = 'eager'
+driver = webdriver.Chrome(options=options)
 
 def login():
     driver.get(base_url)
