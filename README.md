@@ -13,14 +13,9 @@
 1. 若要執行 hkcc-moodle-autoattend，需要安裝額外的套件，使用終端機至此專案的資料夾中執行此指令：
 
 ```
-pip install -r requirements.txt
-```
-或
-```
+sudo apt -y install chromium-chromedriver chromium-browser python3 python3-pip
 pip3 install -r requirements.txt
 ```
-
-2. **請將 Chrome WebDriver 設定至環境變數中**
 
 ## 設定
 用任意的文字編輯器開啟 `autoattend.py`，在
@@ -38,10 +33,6 @@ discord_webhook_url = "https://discord.com/api/webhooks/.../..."
 
 ## 使用方式
 使用終端機至專案資料夾執行此指令：
-```
-python autoattend.py
-```
-或
 ```
 python3 autoattend.py
 ```
