@@ -112,6 +112,11 @@ def take_attendance():
         else:
             not_visited.append(get_attendance.link[i])
     if len(not_visited):
+        if len(not_visited) == len(get_attendance.link):
+            message = "❌ | 現時沒有需要出席的課堂"
+            embed = DiscordEmbed(description=message, color=14495300)
+            webhook.add_embed(embed)
+            webhook.execute()
         print("\nNot visited as it is not in designated period of time now:")
     for link in not_visited:
         print(link)
