@@ -11,7 +11,7 @@
 - [Python 3.8.0+](https://www.python.org/)
 
 ## 安裝方式
-1. 若要執行 hkcc-moodle-autoattend，需要安裝額外的套件，使用終端機至此專案的資料夾中執行此指令：
+若要執行 hkcc-moodle-autoattend，需要安裝額外的套件，使用終端機至此專案的資料夾中執行此指令：
 
 ```
 sudo apt -y install chromium-chromedriver chromium-browser python3 python3-pip
